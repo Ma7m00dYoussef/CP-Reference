@@ -2,7 +2,7 @@
 
 using namespace std;
 typedef long long ll;
-
+// 0-based , r included
 struct SegTree {
     struct Node {
         ll x;

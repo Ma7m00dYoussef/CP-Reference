@@ -2,7 +2,7 @@
 
 using namespace std;
 typedef long long ll;
-
+// 0-based , r included
 class SegTree {
 private:
     struct Node {
