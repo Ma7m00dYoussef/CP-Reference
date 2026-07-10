@@ -11,7 +11,7 @@ private:
 public:
 	void build(vector<ll>& a) {
 		n = (ll) a.size();
-		sq = sqrtl((ld)(n))+1;
+		sq = sqrtl(n)+1 ;
 
 		arr = a;
 		blk.assign((n+sq-1)/sq, 0);
