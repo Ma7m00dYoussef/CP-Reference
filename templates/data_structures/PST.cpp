@@ -72,4 +72,55 @@ struct PST {
 	T query(int version, int l, int r) {
 		return query(root[version], l, r, 0, n - 1);
 	}
+
+// * Returns the index of the k-th smallest element
+// * between two versions.
+// *
+// * leftRoot  = version before the range.
+// * rightRoot = version after the range.
+// *
+// * Example:
+// * version[l - 1]
+// * version[r]
+// *
+// * Returns the compressed value index.
+// *
+// * Complexity: O(log N)
+// *
+	int kth(Node *leftRoot, Node *rightRoot, int k, int lx, int rx) {
+		if (lx == rx)
+			return lx;
+
+		int mid = (lx + rx) >> 1;
+
+		int leftCnt =
+		    (rightRoot->l ? rightRoot->l->val : 0) -
+		    (leftRoot->l ? leftRoot->l->val : 0);
+
+		if (k <= leftCnt)
+			return kth(leftRoot->l, rightRoot->l, k, lx, mid);
+
+		return kth(
+		    leftRoot->r,
+		    rightRoot->r,
+		    k - leftCnt,
+		    mid + 1,
+		    rx
+		);
+	}
+	/*
+	 * Wrapper of kth().
+	 *
+	 * versionL = prefix before range.
+	 * versionR = prefix after range.
+	 */
+	int kth(int versionL, int versionR, int k) {
+		return kth(
+		    root[versionL],
+		    root[versionR],
+		    k,
+		    0,
+		    n - 1
+		);
+	}
 };
