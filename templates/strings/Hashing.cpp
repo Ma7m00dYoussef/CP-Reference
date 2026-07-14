@@ -39,3 +39,12 @@ struct Hash {
 		return sub(pre[r + 1], mul(pre[l], pw[r - l + 1]));
 	}
 };
+
+vector<i64> Hash::pw = {1};
+i64 Hash::BASE = 0;
+
+void initHash() {
+	mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+	uniform_int_distribution<i64> dist(257, MOD - 2);
+	Hash::BASE = dist(rng);
+}
