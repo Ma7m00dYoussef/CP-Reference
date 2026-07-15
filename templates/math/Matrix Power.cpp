@@ -1,7 +1,8 @@
+#include <bits/stdc++.h>
 using Row = vector<int>;
 using Matrix = vector<Row>;
 
-Matrix mul(Matrix &a, Matrix &b)
+Matrix operator *(const Matrix &a, const Matrix &b)
 {
 	int n = a.size(), m = a[0].size(), k = b[0].size();
 	Matrix res(n, Row(k));
